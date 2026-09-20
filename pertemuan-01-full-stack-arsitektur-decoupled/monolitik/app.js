@@ -13,12 +13,16 @@ const PORT = 3000;
 
 // TODO 1: lengkapi data produk
 const produk = [
-  // { nama: "Laptop", harga: 8500000 },
+  { nama: "Laptop", harga: 8500000 },
+  { nama: "Kamera", harga: 7600000 },
+  { nama: "Handphone", harga: 1000000 },
 ];
 
 function renderHalamanProduk(daftarProduk) {
   // TODO 2: bangun string HTML dari daftarProduk
-  const itemHtml = ""; // ganti dengan map() daftarProduk menjadi <li>...</li>
+  const itemHtml = daftarProduk // ganti dengan map() daftarProduk menjadi <li>...</li>
+  .map((p) => `<li>${p.nama} - Rp${p.harga.toLocaleString("id-ID")}</li>`)
+  .join(""); 
 
   return `
     <html>

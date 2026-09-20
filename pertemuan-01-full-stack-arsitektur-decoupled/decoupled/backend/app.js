@@ -15,11 +15,14 @@ app.use(cors());
 
 // TODO 1: lengkapi data produk
 const produk = [
-  // { nama: "Laptop", harga: 8500000 },
+  { nama: "Laptop", harga: 8500000 },
+  { nama: "Kamera", harga: 7600000 },
+  { nama: "Handphone", harga: 1000000 },
 ];
 
 app.get("/api/produk", (req, res) => {
   // TODO 2: kirim `produk` sebagai response JSON
+  res.json(produk);
 });
 
 app.listen(PORT, () => {
