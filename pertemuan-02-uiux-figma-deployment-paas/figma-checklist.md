@@ -8,11 +8,11 @@ Gunakan studi kasus yang sama dengan materi slide: **redesign navigasi aplikasi 
 
 ## TODO Checklist
 
-- [ ] **Wireframe** - buat 3 frame low-fidelity: Halaman Beranda, Halaman Jadwal Kuliah, Halaman Nilai. Fokus pada tata letak, bukan warna/tipografi.
-- [ ] **Mockup** - lengkapi wireframe dengan warna, tipografi, dan ikon agar mendekati tampilan akhir.
-- [ ] **Prototype** - hubungkan ketiga frame sehingga dapat disimulasikan: Beranda → Jadwal Kuliah, Beranda → Nilai.
-- [ ] **Uji Coba** - minta 1-2 teman mencoba prototype, catat kesulitan yang mereka temui.
-- [ ] **Ekspor** - ambil tangkapan layar (screenshot) setiap frame untuk dilampirkan pada laporan praktikum.
+- [ selesai ] **Wireframe** - buat 3 frame low-fidelity: Halaman Beranda, Halaman Jadwal Kuliah, Halaman Nilai. Fokus pada tata letak, bukan warna/tipografi.
+- [ selesai ] **Mockup** - lengkapi wireframe dengan warna, tipografi, dan ikon agar mendekati tampilan akhir.
+- [ selesai ] **Prototype** - hubungkan ketiga frame sehingga dapat disimulasikan: Beranda → Jadwal Kuliah, Beranda → Nilai.
+- [ selesai ] **Uji Coba** - minta 1-2 teman mencoba prototype, catat kesulitan yang mereka temui.
+- [ selesai ] **Ekspor** - ambil tangkapan layar (screenshot) setiap frame untuk dilampirkan pada laporan praktikum.
 
 ## Kaitan dengan Tugas Project Mandiri
 
