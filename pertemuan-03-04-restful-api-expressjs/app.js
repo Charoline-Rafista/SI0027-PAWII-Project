@@ -11,19 +11,26 @@ const PORT = 3000;
 app.use(express.json());
 
 let mahasiswa = [
-  { id: 1, nama: "Andi", jurusan: "Sistem Informasi" },
-  { id: 2, nama: "Budi", jurusan: "Informatika" },
+  { id: 1, nama: "Andi", jurusan: "Sistem Informasi", status: "Aktif" },
+  { id: 2, nama: "Budi", jurusan: "Informatika", status: "Cuti"},
+  { id: 2, nama: "Caca", jurusan: "Akuntansi", status: "Aktif"},
+  { id: 2, nama: "Desi", jurusan: "Kedokteran", status: "Cuti"},
 ];
 
 // TODO 1: GET /mahasiswa -> kirim seluruh data sebagai JSON
 app.get("/mahasiswa", (req, res) => {
   // lengkapi di sini
+  res.json(mahasiswa);
 });
 
 // TODO 2: GET /mahasiswa/:id -> cari data berdasarkan id,
 // kirim 404 dengan { message: 'Data tidak ditemukan' } jika tidak ada
 app.get("/mahasiswa/:id", (req, res) => {
   // lengkapi di sini
+  const id = parseInt(req.params.id);
+  const data = mahasiswa.find((m) => m.id === id);
+  if (!data) return res.status (404).json({message: 'Data tidak ditemukan'});
+  res.json(data);
 });
 
 // TODO 3: POST /mahasiswa -> ambil { nama, jurusan } dari req.body,
@@ -31,6 +38,16 @@ app.get("/mahasiswa/:id", (req, res) => {
 // kirim response dengan status 201
 app.post("/mahasiswa", (req, res) => {
   // lengkapi di sini
+  const {nama, jurusan} = req.body;
+
+  const baru = {
+    id: mahasiswa.length + 1,
+    nama,
+    jurusan,
+  };
+
+  mahasiswa.push(baru);
+  res.status(201).json(baru);
 });
 
 // TODO 4: PUT /mahasiswa/:id -> cari index berdasarkan id,
@@ -38,6 +55,15 @@ app.post("/mahasiswa", (req, res) => {
 // dengan req.body lalu kirim data yang telah diperbarui
 app.put("/mahasiswa/:id", (req, res) => {
   // lengkapi di sini
+  const id = parseInt (req.params.id);
+  const index = mahasiswa.findIndex((m) => m.id === id);
+
+  if (index === -1){
+    return res.status(404).json({message: 'Data tidak ditemukan'});
+
+    mahasiswa[index] = {...mahasiswa[index], ...req.body};
+    res.json(mahasiswa[index]);
+  }
 });
 
 // TODO 5: DELETE /mahasiswa/:id -> cari index berdasarkan id,
@@ -45,8 +71,27 @@ app.put("/mahasiswa/:id", (req, res) => {
 // dan kirim response dengan status 204
 app.delete("/mahasiswa/:id", (req, res) => {
   // lengkapi di sini
+  const id = parseInt(req.params.id);
+  const index = mahasiswa.findIndex((m) => m.id === id);
+
+  if(index === -1) {
+    return res.status(404).json({message: 'Data tidak ditemukan'});
+  }
+
+  mahasiswa.splice(index,1);
+  res.status(204).send();
 });
 
 app.listen(PORT, () => {
   console.log(`Server berjalan di http://localhost:${PORT}`);
 });
+
+//Latihan 1
+//Buat fungsi untuk mengambil data mahasiswa aktif, dengan alamat : mahasiswa/aktif
+app.get("mahasiswa/:status", (req, res) => {
+  
+  const data = mahasiswa.find((m) => m.status === status);
+  if (!data) return res.status (404).json({message: 'Data tidak ditemukan'});
+  res.json(data);
+})
+
