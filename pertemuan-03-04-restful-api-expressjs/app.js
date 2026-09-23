@@ -13,8 +13,8 @@ app.use(express.json());
 let mahasiswa = [
   { id: 1, nama: "Andi", jurusan: "Sistem Informasi", status: "Aktif" },
   { id: 2, nama: "Budi", jurusan: "Informatika", status: "Cuti"},
-  { id: 2, nama: "Caca", jurusan: "Akuntansi", status: "Aktif"},
-  { id: 2, nama: "Desi", jurusan: "Kedokteran", status: "Cuti"},
+  { id: 3, nama: "Caca", jurusan: "Akuntansi", status: "Aktif"},
+  { id: 4, nama: "Desi", jurusan: "Kedokteran", status: "Cuti"},
 ];
 
 // TODO 1: GET /mahasiswa -> kirim seluruh data sebagai JSON
@@ -22,6 +22,14 @@ app.get("/mahasiswa", (req, res) => {
   // lengkapi di sini
   res.json(mahasiswa);
 });
+
+//Latihan 1 (statis harus ditulis sebelum dinamis)
+//Buat fungsi untuk mengambil data mahasiswa aktif, dengan alamat : mahasiswa/aktif
+app.get("/mahasiswa/aktif", (req, res) => {
+  const data = mahasiswa.filter((m) => m.status === "Aktif");
+  if (!data) return res.status (404).json({message: 'Data tidak ditemukan'});
+  res.json(data);
+})
 
 // TODO 2: GET /mahasiswa/:id -> cari data berdasarkan id,
 // kirim 404 dengan { message: 'Data tidak ditemukan' } jika tidak ada
@@ -86,12 +94,5 @@ app.listen(PORT, () => {
   console.log(`Server berjalan di http://localhost:${PORT}`);
 });
 
-//Latihan 1
-//Buat fungsi untuk mengambil data mahasiswa aktif, dengan alamat : mahasiswa/aktif
-app.get("mahasiswa/:status", (req, res) => {
-  
-  const data = mahasiswa.find((m) => m.status === status);
-  if (!data) return res.status (404).json({message: 'Data tidak ditemukan'});
-  res.json(data);
-})
+
 
