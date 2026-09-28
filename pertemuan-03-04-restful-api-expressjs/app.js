@@ -31,6 +31,7 @@ app.get("/mahasiswa/aktif", (req, res) => {
   res.json(data);
 })
 
+
 // TODO 2: GET /mahasiswa/:id -> cari data berdasarkan id,
 // kirim 404 dengan { message: 'Data tidak ditemukan' } jika tidak ada
 app.get("/mahasiswa/:id", (req, res) => {
