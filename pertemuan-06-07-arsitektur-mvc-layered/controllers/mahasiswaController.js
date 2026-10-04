@@ -5,14 +5,21 @@ const mahasiswaModel = require("../models/mahasiswaModel");
 
 exports.getAll = (req, res) => {
   // TODO: kirim seluruh data mahasiswa (mahasiswaModel.getAll()) sebagai JSON
+  res.json(mahasiswaModel.getAll());
 };
 
 exports.getById = (req, res) => {
   // TODO: ambil id dari req.params, cari via mahasiswaModel.getById(),
   // kirim 404 dengan { message: 'Tidak ditemukan' } jika tidak ada
+  const id = parseInt(req.params.id);
+  const data = mahasiswaModel.getById(id);
+  if (!data) return res.status(404).json({ message: "Data tidak ditemukan" });
+  res.json(data);
 };
 
 exports.create = (req, res) => {
   // TODO: buat data baru via mahasiswaModel.create(req.body),
   // kirim response dengan status 201
+  const baru = mahasiswaModel.create(req.body);
+  res.status(201).json(baru);
 };

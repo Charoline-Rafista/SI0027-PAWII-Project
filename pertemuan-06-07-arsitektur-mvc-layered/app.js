@@ -6,9 +6,20 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 const mahasiswaRoutes = require("./routes/mahasiswaRoutes");
+const fakultasRoutes = require("./routes/fakultasRoutes");
+const prodiRoutes = require("./routes/prodiRoutes");
+const dosenRoutes = require("./routes/dosenRoutes");
 
 // TODO: app.use(express.json());
+// Middleware untuk membaca request body JSON.
+app.use(express.json());
+
 // TODO: app.use('/mahasiswa', mahasiswaRoutes);
+// Prefix route untuk setiap modul.
+app.use("/mahasiswa", mahasiswaRoutes);
+app.use("/fakultas", fakultasRoutes);
+app.use("/prodi", prodiRoutes);
+app.use("/dosen", dosenRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server berjalan di http://localhost:${PORT}`);
