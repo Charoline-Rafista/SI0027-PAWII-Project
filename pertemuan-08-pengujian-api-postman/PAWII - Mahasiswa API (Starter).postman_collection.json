@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "b5803aef-1331-4d52-91cf-c3b4aa0ec58f",
+    "_postman_id": "58ce0870-5b67-491f-9384-885e78665599",
     "name": "PAWII - Mahasiswa API (Starter)",
     "description": "Mini Project Pertemuan 8: lengkapi setiap tab Tests (// TODO) pada request di bawah ini.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "58804482",
-    "_collection_link": "https://go.postman.co/collection/58804482-b5803aef-1331-4d52-91cf-c3b4aa0ec58f?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/58804482-58ce0870-5b67-491f-9384-885e78665599?source=collection_link"
   },
   "item": [
     {
@@ -14,23 +14,10 @@
         {
           "listen": "test",
           "script": {
-            "exec": [
-              "// TODO 1: tambahkan pm.test yang memeriksa status code 200",
-              "pm.test('Status code adalah 200', function () {",
-              "  pm.response.to.have.status(200);",
-              "});",
-              "",
-              "// TODO 2: tambahkan pm.test yang memastikan response berupa array",
-              "// gunakan pm.response.json() dan pm.expect(...).to.be.an('array')",
-              "pm.test('Response berupa array', function () {",
-              "  const jsonData = pm.response.json();",
-              "  pm.expect(jsonData).to.be.an('array');",
-              "});",
-              ""
-            ],
             "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "exec": [
+              "// TODO 1: tambahkan pm.test yang memeriksa status code 200\npm.test('Status code adalah 200', function () {\n  pm.response.to.have.status(200);\n});\n\n// TODO 2: tambahkan pm.test yang memastikan response berupa array\n// gunakan pm.response.json() dan pm.expect(...).to.be.an('array')\npm.test('Response berupa array', function () {\n  const jsonData = pm.response.json();\n  pm.expect(jsonData).to.be.an('array');\n});\n"
+            ]
           }
         }
       ],
@@ -55,21 +42,10 @@
         {
           "listen": "test",
           "script": {
-            "exec": [
-              "// TODO 3: tambahkan pm.test yang memeriksa status code 201",
-              "pm.test('Status code adalah 201', function () {",
-              "  pm.response.to.have.status(201);",
-              "});",
-              "",
-              "// TODO 4: simpan id dari response ke environment variable",
-              "// 'mahasiswaId' menggunakan pm.environment.set(), agar dapat",
-              "// dipakai oleh request 'GET Satu Mahasiswa' di bawah ini",
-              "const jsonData = pm.response.json();",
-              "pm.environment.set('mahasiswaId', jsonData.id);"
-            ],
             "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "exec": [
+              "// TODO 3: tambahkan pm.test yang memeriksa status code 201\npm.test('Status code adalah 201', function () {\n  pm.response.to.have.status(201);\n});\n\n// TODO 4: simpan id dari response ke environment variable\n// 'mahasiswaId' menggunakan pm.environment.set(), agar dapat\n// dipakai oleh request 'GET Satu Mahasiswa' di bawah ini\nconst jsonData = pm.response.json();\npm.environment.set('mahasiswaId', jsonData.id);\n"
+            ]
           }
         }
       ],
@@ -83,7 +59,12 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"nama\": \"Citra\",\n  \"jurusan\": \"Sistem Informasi\"\n}"
+          "raw": "{\n  \"nama\": \"Citra\",\n  \"jurusan\": \"Sistem Informasi\"\n}",
+          "options": {
+            "raw": {
+              "language": "text"
+            }
+          }
         },
         "url": {
           "raw": "{{base_url}}/mahasiswa",
@@ -103,24 +84,10 @@
         {
           "listen": "test",
           "script": {
-            "exec": [
-              "// TODO 5: tambahkan pm.test yang memeriksa status code 200",
-              "pm.test('Status code adalah 200', function () {",
-              "  pm.response.to.have.status(200);",
-              "});",
-              "",
-              "// TODO 6: tambahkan pm.test yang memastikan data memiliki",
-              "// properti 'nama'",
-              " ",
-              "pm.test('Data mahasiswa pertama bernama Andi', function () {",
-              "  const jsonData = pm.response.json();",
-              "  pm.expect(jsonData[0].nama).to.eql('Andi');",
-              "});",
-              ""
-            ],
             "type": "text/javascript",
-            "packages": {},
-            "requests": {}
+            "exec": [
+              "// TODO 5: tambahkan pm.test yang memeriksa status code 200\npm.test('Status code adalah 200', function () {\n  pm.response.to.have.status(200);\n});\n\n// TODO 6: tambahkan pm.test yang memastikan data memiliki\n// properti 'nama'\npm.test('Data mahasiswa memiliki properti nama', function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property('nama');\n});"
+            ]
           }
         }
       ],
