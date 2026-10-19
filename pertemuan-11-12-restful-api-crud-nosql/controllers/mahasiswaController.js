@@ -9,7 +9,31 @@ const MAX_LIMIT = 100;
 // GET /mahasiswa?prodiId=...&sort=nama&page=1&limit=10&fields=nama,nim
 exports.getAll = async (req, res) => {
   // TODO: bangun object filter - jika req.query.prodiId ada, tambahkan ke filter
+  
   const filter = {};
+  if (req.query.prodiId) {
+    filter.prodiId = req.query.prodiId;
+  }
+
+  const page = Math.max(parseint(req.query.page) || 1,1);
+  const limit = Math.min(parseInt(req.query.limit) || 10, MAX_LIMIT);
+  const sortField = req.query.sort || "createdAt";
+  const projection = req.query.fields ? req.query.fields.split(",").join(" ") : "";
+
+  try{
+    const data = await Mahasiswa.find(filter)
+      .populate("prodiId")
+      .select(projection)
+      .sort({ [sortField]: 1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    const total = await Mahasiswa.countDocuments(filter);
+
+    res.json({ data, page, limit, total });
+  } catch(error){
+    res.status(500).json({message:"Error : " + error});
+  }
 
   // TODO: ambil page dari req.query.page (default 1, minimal 1)
   // TODO: ambil limit dari req.query.limit (default 10), batasi maksimum dengan MAX_LIMIT

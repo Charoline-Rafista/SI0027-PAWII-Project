@@ -4,6 +4,26 @@
 
 function errorHandler(err, req, res, next) {
   // TODO: tentukan status - gunakan err.status jika ada, jika tidak default 500
+  const status = err.status || 500;
+  let message = err.message || "Terjadi kesalahan pada server";
+
+  if (err.name === "ValidationError") {
+    status = 400;
+  } else if (err.name === "CastError") {
+    status = 400;
+    messgae = `Format ${err.path} tidak valid`;
+  } else if (err.code === 11000) {
+    status = 400;
+    message = "Data dengan nilai unik tersebut sudah ada";
+  }
+
+  if (status === 5000) {
+    console.error(err);
+    message = "Terjadi kesalahan pada server";
+  }
+
+  res.status(status).json({ message });
+
   // TODO: tentukan message - gunakan err.message jika ada, jika tidak pesan default
   // TODO: jika err.name === 'ValidationError' -> status 400
   // TODO: jika err.name === 'CastError' -> status 400, message "Format {err.path} tidak valid"
