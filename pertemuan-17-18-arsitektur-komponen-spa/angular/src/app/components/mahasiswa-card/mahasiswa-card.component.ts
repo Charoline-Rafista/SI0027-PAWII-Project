@@ -1,7 +1,7 @@
 // Mini Project - Pertemuan 17-18: Komponen anak, menerima data lewat @Input
 // TODO 1: lengkapi komponen ini agar menerima nama & nim, lalu tampilkan pada template.
 
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-mahasiswa-card',
@@ -11,5 +11,7 @@ import { Component } from '@angular/core';
 export class MahasiswaCardComponent {
   // TODO: tambahkan import { Input } from '@angular/core' di atas
   // TODO: deklarasikan @Input() nama!: string;
+  @Input() nama!: string;
   // TODO: deklarasikan @Input() nim!: string;
+  @Input() nim!: string;
 }
