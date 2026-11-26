@@ -25,16 +25,26 @@ function DaftarMahasiswaPage() {
 
   useEffect(() => {
     // TODO: panggil api.get('/mahasiswa')
+    api.get('/mahasiswa')
     // TODO: .then((res) => setMahasiswa(res.data.data))
+      .then((res) => setMahasiswa(res.data.data))
     // TODO: .catch(() => setError('Gagal memuat data mahasiswa'))
+      .catch(() => setError('Gagal memuat data mahasiswa'))
     // TODO: .finally(() => setLoading(false))
+      .finally(() => setLoading(false))
   }, []);
 
   async function handleTambah(mahasiswaBaru) {
     // TODO: bungkus dengan try/catch
-    // TODO: const res = await api.post('/mahasiswa', mahasiswaBaru)
-    // TODO: setMahasiswa((prev) => [...prev, res.data])
-    // TODO: pada catch, tampilkan alert('Gagal menambah data (pastikan Anda sudah login)')
+    try {
+      // TODO: const res = await api.post('/mahasiswa', mahasiswaBaru)
+      const res = await api.post('/mahasiswa', mahasiswaBaru);
+      // TODO: setMahasiswa((prev) => [...prev, res.data])
+      setMahasiswa((prev) => [...prev, res.data]);
+      // TODO: pada catch, tampilkan alert('Gagal menambah data (pastikan Anda sudah login)')
+    } catch (err) {
+      alert('Gagal menambah data (pastikan Anda sudah login)');
+    }
   }
 
   function handleLogout() {

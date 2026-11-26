@@ -1,5 +1,7 @@
 // Mini Project - Pertemuan 13-14: Koneksi MongoDB, Routing, Auth & Error Handling
 // Jalankan dengan: npm install && npm start (setelah menyalin .env.example menjadi .env)
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '1.1.1.1']);
 
 require("express-async-errors");
 require("dotenv").config();

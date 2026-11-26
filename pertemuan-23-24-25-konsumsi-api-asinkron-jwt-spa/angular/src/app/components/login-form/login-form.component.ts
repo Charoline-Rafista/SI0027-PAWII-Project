@@ -23,6 +23,13 @@ export class LoginFormComponent {
 
   onSubmit() {
     this.error = '';
+    this.authService.login(this.username, this.password).subscribe({
+      next: (res) => {
+        localStorage.setItem('token', res.token);
+        this.loginBerhasil.emit();
+      },
+      error: () => { this.error = 'Username/password salah'; },
+    });
     // TODO: setelah AuthService.login() lengkap, panggil:
     // this.authService.login(this.username, this.password).subscribe({
     //   next: (res) => {

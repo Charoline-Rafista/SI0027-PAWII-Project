@@ -37,6 +37,10 @@ export class DaftarMahasiswaPageComponent implements OnInit {
     //   next: (res) => { this.mahasiswa = res.data; this.loading = false; },
     //   error: () => { this.error = 'Gagal memuat data mahasiswa'; this.loading = false; },
     // });
+    this.mahasiswaService.getAll().subscribe({
+      next: (res) => { this.mahasiswa = res.data; this.loading = false; },
+      error: () => { this.error = 'Gagal memuat data mahasiswa'; this.loading = false; },
+    });
   }
 
   get mahasiswaTersaring(): Mahasiswa[] {
@@ -54,6 +58,10 @@ export class DaftarMahasiswaPageComponent implements OnInit {
     //   next: (res) => { this.mahasiswa = [...this.mahasiswa, res]; },
     //   error: () => { alert('Gagal menambah data (pastikan Anda sudah login)'); },
     // });
+    this.mahasiswaService.create(mahasiswaBaru).subscribe({
+      next: (res) => { this.mahasiswa = [...this.mahasiswa, res]; },
+      error: () => { alert('Gagal menambah data (pastikan Anda sudah login)'); },
+    });
   }
 
   onLogout() {

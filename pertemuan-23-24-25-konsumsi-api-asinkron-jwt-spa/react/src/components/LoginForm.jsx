@@ -13,9 +13,16 @@ function LoginForm({ onLoginBerhasil }) {
     e.preventDefault();
     setError("");
     // TODO: panggil api.post('/auth/login', { username, password }) di dalam try/catch
-    // TODO: jika berhasil, simpan token dengan localStorage.setItem('token', res.data.token)
-    // TODO: panggil onLoginBerhasil()
-    // TODO: jika gagal (catch), setError('Username/password salah')
+    try {
+      const res = await api.post("/auth/login", { username, password });
+      // TODO: jika berhasil, simpan token dengan localStorage.setItem('token', res.data.token)
+      localStorage.setItem('token', res.data.token);
+      // TODO: panggil onLoginBerhasil()
+      onLoginBerhasil();
+      // TODO: jika gagal (catch), setError('Username/password salah')
+    } catch (err) {
+      setError('Username/password salah');
+    }
   }
 
   return (
